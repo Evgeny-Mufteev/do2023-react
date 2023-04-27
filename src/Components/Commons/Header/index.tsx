@@ -1,8 +1,22 @@
 import React from 'react';
 import styles from './Header.module.scss';
+import ky from 'ky';
 
 import { Link } from 'react-router-dom';
 import { routes } from '../../../utils/constants/routes';
+
+const api = ky.create({
+  prefixUrl: 'https://6448277d7bb84f5a3e53d41b.mockapi.io/header-info'
+})
+
+async function getInfoPage() {
+  try {
+    const InfoPage = await api.get('').json();
+    console.log(InfoPage);
+  } catch (error: any) {
+    console.log(error.message);
+  }
+}
 
 export const Header = () => {
   return (
@@ -30,6 +44,7 @@ export const Header = () => {
             </ul>
           </nav>
         </div>
+        <button onClick={getInfoPage}> Get info page</button>
 
         <div className={styles.header__holder}>
           <h1 className={styles.header__title}>конференция</h1>
