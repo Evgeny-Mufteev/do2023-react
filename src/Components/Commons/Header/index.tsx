@@ -18,7 +18,12 @@ async function getInfoPage() {
   }
 }
 
-export const Header = () => {
+interface IHeader {
+  name: string;
+  text: string;
+}
+
+export const Header = ({ name = 'Заголовок', text = 'text' }: IHeader) => {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
@@ -47,12 +52,8 @@ export const Header = () => {
         <button onClick={getInfoPage}> Get info page</button>
 
         <div className={styles.header__holder}>
-          <h1 className={styles.header__title}>конференция</h1>
-          <div className={styles.header__subtitle}>
-            Крупнейшая ежегодная конференция в области маркетинга, рекламы и продвижения, коммуникации, брендов и
-            современных технологий. Топовые спикеры, инсайты, нетворкинг, афтерпати, воркшопы, знакомства, креатив и
-            мотивация.
-          </div>
+          <h1 className={styles.header__title}>{name}</h1>
+          <div className={styles.header__subtitle}>{text}</div>
         </div>
       </div>
     </header>
