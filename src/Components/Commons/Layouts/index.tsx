@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from 'react'
 import { Header } from '../Header';
 import { Footer } from '../Footer';
@@ -6,14 +5,12 @@ import styles from './Layouts.module.scss';
 
 interface TProps {
   children: JSX.Element;
-  name: string;
-  text: string;
 }
 
-const Layout = ({ children, name, text }: TProps) => {
+const Layout = ({ children }: TProps) => {
   return (
     <div className={styles.postPageWrapper}>
-      <Header name={name} text={text} />
+      <Header />
       <main className={styles.main}>{children}</main>
       <Footer />
     </div>

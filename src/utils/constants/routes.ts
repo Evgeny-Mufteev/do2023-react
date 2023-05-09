@@ -1,5 +1,5 @@
 export const routes = {
-  MAIN: '/',
+  MAIN: '/index',
   PREMIUM: '/premium',
   PROGRAM: '/program',
   SPEAKERS: '/speakers',

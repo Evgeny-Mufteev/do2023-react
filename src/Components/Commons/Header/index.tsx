@@ -1,29 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Header.module.scss';
 import ky from 'ky';
 
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { routes } from '../../../utils/constants/routes';
 
 const api = ky.create({
   prefixUrl: 'https://6448277d7bb84f5a3e53d41b.mockapi.io/header-info'
 })
 
-async function getInfoPage() {
-  try {
-    const InfoPage = await api.get('').json();
-    console.log(InfoPage);
-  } catch (error: any) {
-    console.log(error.message);
-  }
-}
-
-interface IHeader {
+interface PageInfoItem {
   name: string;
   text: string;
+  pageName: string;
+  id: string;
 }
 
-export const Header = ({ name = 'Заголовок', text = 'text' }: IHeader) => {
+export const Header = () => {
+  const { pathname } = useLocation();
+  const [pageInfo, setPageInfo] = useState<PageInfoItem[]>([]);
+  const [{ name, text }, setData] = useState({ name: '', text: '' });
+
+  React.useEffect(() => {
+    const getInfoPage = async () => {
+      const json: PageInfoItem[] = await api.get('').json();
+
+      setPageInfo(json);
+    };
+
+    getInfoPage().catch(console.error);
+  }, []);
+
+  React.useEffect(() => {
+    console.log(pathname);
+
+    const item = pageInfo.find((el) => el.pageName === pathname.slice(1));
+    if (item) {
+      setData({ name: item.name, text: item.text });
+    }
+  }, [pathname]);
   return (
     <header className={styles.header}>
       <div className={styles.container}>
@@ -49,7 +64,6 @@ export const Header = ({ name = 'Заголовок', text = 'text' }: IHeader) 
             </ul>
           </nav>
         </div>
-        <button onClick={getInfoPage}> Get info page</button>
 
         <div className={styles.header__holder}>
           <h1 className={styles.header__title}>{name}</h1>

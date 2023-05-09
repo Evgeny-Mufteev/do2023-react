@@ -1,15 +1,7 @@
 import React from 'react'
-// import styles from './PremiumPage.module.scss';
+import styles from './PremiumPage.module.scss';
 
-const PremiumPage = ({ setTextInfo }: any) => {
-  React.useEffect(() => {
-    const data = { name: 'Title2', text: 'Decription2' };
-    setTextInfo(() => {
-      return {
-        ...data
-      }
-    })
-  }, [])
+const PremiumPage = () => {
   return (
     <div>PremiumPage</div>
   )
