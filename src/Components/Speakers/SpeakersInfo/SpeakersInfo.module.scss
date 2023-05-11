@@ -1,0 +1,56 @@
+.speakers-block {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(304px, 1fr));
+  grid-gap: 80px 32px;
+
+  &__img {
+    img {
+      width: 304px;
+      height: 304px;
+      max-height: 304px;
+      border-radius: 50%;
+    }
+  }
+
+  &__fulname {
+    max-width: 284px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 28px;
+  }
+
+  &__name,
+  &__surname {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    margin: 0 auto;
+    color: #FFFFFF;
+  }
+
+  &__desc {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 125%;
+    text-align: center;
+    color: #878886;
+    max-width: 284px;
+    margin-top: 12px;
+
+    -webkit-line-clamp: 4;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
