@@ -166,6 +166,48 @@
     "name": "Валерия Зотова",
     "jobTitle": "PR-менеджер MediaNation и продюсер подкаста «Лида, где лиды?»",
     "city": "г. Москва"
+  },
+  {
+    "id": 24,
+    "imageUrl": "https://digitalnn.ru/upload/resize_cache/iblock/bc3/400_400_0/bc3ed0f9f9529d94e23d47626823d6e4.jpg",
+    "name": "Елизавета Козылова",
+    "jobTitle": "Исполнительный директор репутационного агентства DAYNET",
+    "city": "г. Нижний Новгород"
+  },
+  {
+    "id": 25,
+    "imageUrl": "https://digitalnn.ru/upload/resize_cache/iblock/e31/400_400_0/e31e6f002950d2f9b6e39f5aaf2e62e9.png",
+    "name": "Алёна Борщёва",
+    "jobTitle": "Основатель и CEO сервиса аналитики соцсетей и digital рекламы DataFan, маркетинговый аналитик",
+    "city": "г. Москва"
+  },
+  {
+    "id": 26,
+    "imageUrl": "https://digitalnn.ru/upload/resize_cache/iblock/151/400_400_0/15123583d105f9d52f85d9ac8c4ffadb.jpg",
+    "name": "Дарья Черенкова",
+    "jobTitle": "Digital-стратег, таргетолог. Автор курса и преподаватель в Нетологии. Приглашенный специалист-стратег в агентства: SETTERS, State of Mind, КБ-12",
+    "city": "г. Санкт-Петербург"
+  },
+  {
+    "id": 27,
+    "imageUrl": "https://digitalnn.ru/upload/resize_cache/iblock/cd0/400_400_0/cd0acfdbd9fd406965a63da62acc3ce0.jpg",
+    "name": "Дмитрий Фердман",
+    "jobTitle": "Наставник по увеличению прибыли digital-специалистов, руководитель SMM-агентства LevelUP",
+    "city": "г. Санкт-Петербург"
+  },
+  {
+    "id": 28,
+    "imageUrl": "https://digitalnn.ru/upload/iblock/a55/a555db2d432e6578f763c62cb37b0ab5.jpg",
+    "name": "Диана Сурова",
+    "jobTitle": "SEO-специалист агентства интернет-маркетинга R-Top",
+    "city": "г. Нижний Новгород"
+  },
+  {
+    "id": 29,
+    "imageUrl": "https://digitalnn.ru/upload/resize_cache/iblock/2da/400_400_0/2dab7d8ea1505d0f3847a6e3b7733c41.jpeg",
+    "name": "Александр Ожгибесов",
+    "jobTitle": "Руководитель студии Ozhgibesov Agency",
+    "city": "г. Воронеж"
   }
 
 ]
