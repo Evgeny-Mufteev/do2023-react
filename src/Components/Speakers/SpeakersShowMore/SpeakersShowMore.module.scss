@@ -1,0 +1,23 @@
+.speakers__btn {
+  border-radius: 600px;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  text-transform: uppercase;
+  color: #10110D;
+  width: 216px;
+  height: 56px;
+  margin: 80px auto 0;
+  display: block;
+  outline: none;
+  transition: all .4s ease;
+}
+
+.red-btn {
+  background: #EA6143;
+  border: none;
+
+  &:hover {
+    background: #D05034;
+  }
+}

@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './SpeakersInfo.module.scss';
 
-interface ISpeakers {
+interface ISpeaker {
   id: number;
   imageUrl: string;
   name: string;
@@ -9,9 +9,8 @@ interface ISpeakers {
   city: string;
 }
 
-const SpeakersInfo = ({ imageUrl, name, jobTitle, city }: ISpeakers) => {
+const SpeakersInfo = ({ imageUrl, name, jobTitle, city }: ISpeaker) => {
   return (
-    // {styles['header-nav__logo']}
     <div className={styles['speakers-block__item']}>
       <div className={styles['speakers-block__img']}>
         <img src={imageUrl} alt="workshop1" />
