@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/do2023-react/static/css/main.3be2a3e8.css",
-    "main.js": "/do2023-react/static/js/main.4b8eb95d.js",
+    "main.css": "/do2023-react/static/css/main.fcad2b9d.css",
+    "main.js": "/do2023-react/static/js/main.64abf94c.js",
     "static/media/Inter-Regular.woff": "/do2023-react/static/media/Inter-Regular.f3ce705f806c10eb6e2d.woff",
     "static/media/Inter-Regular.woff2": "/do2023-react/static/media/Inter-Regular.ac03a6de9ea313009257.woff2",
     "static/media/bg-footer.webp": "/do2023-react/static/media/bg-footer.7f50ffeb1e3293d6e546.webp",
@@ -11,11 +11,11 @@
     "static/media/NeutralFaceRegular.woff2": "/do2023-react/static/media/NeutralFaceRegular.780b8cc3c31ec03df6dd.woff2",
     "static/media/NeutralFaceBold.woff2": "/do2023-react/static/media/NeutralFaceBold.fe3611778ce194335f98.woff2",
     "index.html": "/do2023-react/index.html",
-    "main.3be2a3e8.css.map": "/do2023-react/static/css/main.3be2a3e8.css.map",
-    "main.4b8eb95d.js.map": "/do2023-react/static/js/main.4b8eb95d.js.map"
+    "main.fcad2b9d.css.map": "/do2023-react/static/css/main.fcad2b9d.css.map",
+    "main.64abf94c.js.map": "/do2023-react/static/js/main.64abf94c.js.map"
   },
   "entrypoints": [
-    "static/css/main.3be2a3e8.css",
-    "static/js/main.4b8eb95d.js"
+    "static/css/main.fcad2b9d.css",
+    "static/js/main.64abf94c.js"
   ]
 }
