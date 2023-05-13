@@ -34,11 +34,13 @@ export const Header = () => {
   React.useEffect(() => {
     console.log(pathname);
 
-    const item = pageInfo.find((el) => el.pageName === pathname.slice(1));
+    const item = pageInfo.find((el) => el.pageName === pathname.slice(1)) ?? pageInfo[0];
+
     if (item) {
       setData({ name: item.name, text: item.text });
     }
-  }, [pathname]);
+  }, [pathname, pageInfo.length]
+  );
   return (
     <header className={styles.header}>
       <div className={styles.container}>

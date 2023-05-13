@@ -13,7 +13,7 @@ function App() {
   return (
     <div className={styles.wrapper}>
       <Layout>
-        <Routes>
+        <Routes >
           <Route path={routes.MAIN} element={<MainPage />} />
           <Route path={routes.PREMIUM} element={<PremiumPage />} />
           <Route path={routes.PROGRAM} element={<ProgramPage />} />
