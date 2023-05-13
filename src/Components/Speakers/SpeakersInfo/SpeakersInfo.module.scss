@@ -29,6 +29,8 @@
     line-height: 24px;
     margin: 0 auto;
     color: #FFFFFF;
+    padding: 0px 75px;
+    text-align: center;
   }
 
   &__desc {
@@ -39,12 +41,23 @@
     color: #878886;
     max-width: 284px;
     margin-top: 12px;
+    height: 70px;
 
     -webkit-line-clamp: 4;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;
     overflow-wrap: anywhere;
+  }
+
+  &__city {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 125%;
+    text-align: center;
+    color: #878886;
+    max-width: 284px;
+    margin-top: 12px;
   }
 
   &__item {

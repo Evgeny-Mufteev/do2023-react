@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './SpeakersInfo.module.scss';
 
-interface ISpeaker {
+export interface ISpeaker {
   id: number;
   imageUrl: string;
   name: string;
@@ -20,7 +20,7 @@ const SpeakersInfo = ({ imageUrl, name, jobTitle, city }: ISpeaker) => {
           <p className={styles['speakers-block__name']}>{name}</p>
         </div>
         <p className={styles['speakers-block__desc']}>{jobTitle}</p>
-        <p className={styles['speakers-block__desc']}>{city}</p>
+        <p className={styles['speakers-block__city']}>{city}</p>
       </div>
     </div>
   )
