@@ -16,6 +16,8 @@ const SpeakersPage = () => {
   const [items, setItems] = useState<ISpeaker[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
+  // console.log(items.slice(0, 4));
+
   useEffect(() => {
     const getSpeakersData = async () => {
       const data: ISpeaker[] = await apiSpeakers.get('').json();
