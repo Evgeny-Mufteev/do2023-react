@@ -15,8 +15,11 @@ const apiSpeakers = ky.create({
 const SpeakersPage = () => {
   const [items, setItems] = useState<ISpeaker[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [amountItems, setAmountItems] = useState(4)
 
-  // console.log(items.slice(0, 4));
+  const onClickLoadMore = () => {
+    setAmountItems(amountItems + 4);
+  };
 
   useEffect(() => {
     const getSpeakersData = async () => {
@@ -35,12 +38,14 @@ const SpeakersPage = () => {
 
           {
             isLoading
-              ? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
-              : items.map((obj) => <SpeakersInfo key={obj.id} {...obj} />)
+              ? [...new Array(4)].map((_, index) => <Skeleton key={index} />)
+              : items.slice(0, amountItems).map((obj) => <SpeakersInfo key={obj.id} {...obj} />)
           }
 
         </div>
         <SpeakersShowMore />
+        <button onClick={onClickLoadMore}>показать еще</button>
+
       </div>
     </section >
 
