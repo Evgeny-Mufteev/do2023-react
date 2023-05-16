@@ -5,7 +5,7 @@ import styles from './SpeakersPage.module.scss';
 import common from '../../App.module.scss';
 
 import SpeakersInfo, { type ISpeaker } from '../../Components/Speakers/SpeakersInfo';
-import SpeakersShowMore from '../../Components/Speakers/SpeakersShowMore';
+import { SpeakersShowMore } from '../../Components/Speakers/SpeakersShowMore';
 import Skeleton from '../../Components/Speakers/SpeakersInfo/skeleton';
 
 const apiSpeakers = ky.create({
@@ -17,7 +17,7 @@ const SpeakersPage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [amountItems, setAmountItems] = useState(4)
 
-  const onClickLoadMore = () => {
+  const handleClickLoadMore = () => {
     setAmountItems(amountItems + 4);
   };
 
@@ -43,8 +43,11 @@ const SpeakersPage = () => {
           }
 
         </div>
-        <SpeakersShowMore />
-        <button onClick={onClickLoadMore}>показать еще</button>
+        {
+          !(amountItems === items.length)
+            ? <SpeakersShowMore handleClickLoadMore={handleClickLoadMore} />
+            : null
+        }
 
       </div>
     </section >
