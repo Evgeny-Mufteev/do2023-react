@@ -11,21 +11,21 @@ export interface ITickets {
   id: number;
 }
 
-export const MainTickets = () => {
+export const MainTickets = ({ name, newPrice, oldPrice, options }: ITickets) => {
   return (
     <div className={styles.tickets__item}>
       <div className={styles['tickets__item-box']}>
-        <div className={styles['tickets__item-name']}>Онлайн</div>
+        <div className={styles['tickets__item-name']}>{name}</div>
         <div className={styles['tickets__item-price']}>
-          <div className={styles['tickets__item-new']}>800₽</div>
-          <div className={styles['tickets__item-old']}>1 500₽</div>
+          <div className={styles['tickets__item-new']}>{newPrice}</div>
+          <div className={styles['tickets__item-old']}>{oldPrice}</div>
         </div>
       </div>
       <div className={styles['tickets__item-box']}>
         <ul className={styles.tickets__description}>
-          <li className={styles['tickets__description-item']}>- Билет на 2 дня мероприятия офлайн;</li>
-          <li className={styles['tickets__description-item']}>- Материалы конференции (видеозаписи выступлений и презентации
-            спикеров в PDF)</li>
+          {options.map((item) => (
+            <li className={styles['tickets__description-item']} key={item}>{item}</li>
+          ))}
         </ul>
       </div>
       <div className={styles['tickets__item-box']}>

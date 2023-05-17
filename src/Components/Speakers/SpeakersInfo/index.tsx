@@ -9,7 +9,7 @@ export interface ISpeaker {
   city: string;
 }
 
-const SpeakersInfo = ({ imageUrl, name, jobTitle, city }: ISpeaker) => {
+export const SpeakersInfo = ({ imageUrl, name, jobTitle, city }: ISpeaker) => {
   return (
     <div className={styles['speakers-block__item']}>
       <div className={styles['speakers-block__img']}>
@@ -25,5 +25,3 @@ const SpeakersInfo = ({ imageUrl, name, jobTitle, city }: ISpeaker) => {
     </div>
   )
 }
-
-export default SpeakersInfo

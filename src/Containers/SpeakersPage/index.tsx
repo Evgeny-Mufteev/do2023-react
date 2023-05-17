@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import ky from 'ky';
+import Skeleton from '../../Components/Speakers/SpeakersInfo/skeleton';
 
 import styles from './SpeakersPage.module.scss';
 import commonStyles from '../../App.module.scss';
 
-import SpeakersInfo, { type ISpeaker } from '../../Components/Speakers/SpeakersInfo';
 import { SpeakersShowMore } from '../../Components/Speakers/SpeakersShowMore';
-import Skeleton from '../../Components/Speakers/SpeakersInfo/skeleton';
+import { type ISpeaker, SpeakersInfo } from '../../Components/Speakers/SpeakersInfo';
 
 const apiSpeakers = ky.create({
   prefixUrl: 'https://645e79c08d08100293008a13.mockapi.io/api/data'

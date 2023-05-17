@@ -44,8 +44,16 @@
     text-align: center;
     text-transform: uppercase;
     color: #FFFFFF;
-    margin-right: 24px;
+    margin-right: 29px;
+    position: relative;
+
+    &::after {
+      content: '₽';
+      position: absolute;
+      right: -14px;
+    }
   }
+
 
   &-old {
     font-weight: 400;
@@ -55,6 +63,13 @@
     text-decoration-line: line-through;
     text-transform: uppercase;
     color: #878886;
+    position: relative;
+
+    &::after {
+      content: '₽';
+      position: absolute;
+      right: -14px;
+    }
   }
 
   &-box {
@@ -84,4 +99,18 @@
   text-transform: uppercase;
   color: #FFFFFF;
   user-select: none;
+}
+
+.tickets__description-item {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #878886;
+  position: relative;
+
+  &::after {
+    content: '—';
+    position: absolute;
+    left: -19px;
+  }
 }
