@@ -44,7 +44,7 @@ const SpeakersPage = () => {
 
         </div>
         {
-          !(amountItems === items.length)
+          !(amountItems >= items.length)
             ? <SpeakersShowMore handleClickLoadMore={handleClickLoadMore} />
             : null
         }
