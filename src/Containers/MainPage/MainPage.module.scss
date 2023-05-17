@@ -1,0 +1,43 @@
+.tickets {
+  padding: 220px 0;
+
+  &__title {
+    font-family: NeutralFace;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 56px;
+    color: #FFFFFF;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+
+  &__info {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #878886;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 80px;
+  }
+
+  &__item-wrap {
+    border-top: 2px solid #187437;
+  }
+
+  &__description {
+    max-width: 444px;
+
+    &-item {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 20px;
+      color: #878886;
+    }
+  }
+
+}

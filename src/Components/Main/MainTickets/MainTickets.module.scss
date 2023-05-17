@@ -1,0 +1,87 @@
+.tickets__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 38px 32px;
+  border-bottom: 2px solid #187437;
+  transition: all .4s ease;
+
+  &:hover {
+    background: #187437;
+
+    .tickets__item-old,
+    .tickets__description-item {
+      color: #FFFFFF;
+    }
+
+    .tickets__btn {
+      background-color: #FFFFFF;
+      color: #187437;
+    }
+
+  }
+
+  &-name {
+    font-family: NeutralFace;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 34px;
+    color: #FFFFFF;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+
+  &-price {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  &-new {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    margin-right: 24px;
+  }
+
+  &-old {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    text-decoration-line: line-through;
+    text-transform: uppercase;
+    color: #878886;
+  }
+
+  &-box {
+    &:first-child {
+      min-width: 383px;
+      max-width: 383px;
+      margin-right: 120px;
+    }
+
+    &:nth-child(2) {
+      width: 100%;
+    }
+  }
+
+}
+
+.tickets__btn {
+  padding: 16px 30px;
+  width: 180px;
+  height: 56px;
+  border: 1.5px solid #FFFFFF;
+  border-radius: 600px;
+  background-color: #10110D;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  user-select: none;
+}

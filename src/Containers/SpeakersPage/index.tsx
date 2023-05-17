@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ky from 'ky';
 
 import styles from './SpeakersPage.module.scss';
-import common from '../../App.module.scss';
+import commonStyles from '../../App.module.scss';
 
 import SpeakersInfo, { type ISpeaker } from '../../Components/Speakers/SpeakersInfo';
 import { SpeakersShowMore } from '../../Components/Speakers/SpeakersShowMore';
@@ -33,7 +33,7 @@ const SpeakersPage = () => {
 
   return (
     <section className={styles.speakers}>
-      <div className={common.container}>
+      <div className={commonStyles.container}>
         <div className={styles['speakers-block']}>
 
           {
