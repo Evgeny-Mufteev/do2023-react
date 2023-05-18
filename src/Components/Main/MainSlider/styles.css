@@ -1,0 +1,12 @@
+.slider {
+  overflow: hidden;
+}
+
+.swiper-slide {
+  width: auto !important;
+  margin-right: 20px;
+}
+
+.swiper-wrapper {
+  transition-timing-function: linear;
+}
