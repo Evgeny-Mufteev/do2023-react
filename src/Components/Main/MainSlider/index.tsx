@@ -20,10 +20,9 @@ export const MainSlider = () => {
         slidesPerView={2.6}
         spaceBetween={30}
         loop={true}
-        speed={15000}
+        speed={35000}
         autoplay={{
-
-          delay: 0,
+          delay: 2000,
           disableOnInteraction: true,
         }}
         breakpoints={{

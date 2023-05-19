@@ -1,0 +1,53 @@
+.timer {
+  width: 302px;
+  height: 98px;
+  padding: 0 10px;
+  user-select: none;
+
+  &-title {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 125%;
+    color: var(--color-gray3);
+    text-align: end;
+    margin-bottom: 16px;
+  }
+
+  &__colon {
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 1;
+    color: var(--white-color);
+  }
+
+  .countdown {
+    display: flex;
+    justify-content: space-between;
+
+    & div span {
+      color: var(--white-color);
+      font-family: NeutralFace;
+      font-weight: 400;
+      font-size: 40px;
+      line-height: 1;
+    }
+
+    &-text {
+      display: flex;
+      justify-content: space-between;
+
+      & div span {
+        color: var(--color-gray3);
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 125%;
+      }
+    }
+
+    &__block {
+      display: flex;
+      justify-content: space-between;
+      width: 216px;
+    }
+  }
+}
