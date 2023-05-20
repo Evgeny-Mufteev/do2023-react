@@ -5,11 +5,6 @@ import Layout from './Components/Commons/Layouts';
 import { Route, Routes } from 'react-router-dom';
 import { routes } from './utils/constants/routes';
 
-// import MainPage from './Containers/MainPage';
-// import SpeakersPage from './Containers/SpeakersPage';
-// import PremiumPage from './Containers/PremiumPage';
-// import ProgramPage from './Containers/ProgramPage';
-
 const MainPage = lazy(async () => await import('./Containers/MainPage'))
 const SpeakersPage = lazy(async () => await import('./Containers/SpeakersPage'))
 const PremiumPage = lazy(async () => await import('./Containers/PremiumPage'))
