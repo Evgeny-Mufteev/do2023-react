@@ -1,13 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Header.module.scss';
-import ky from 'ky';
 
 import { Link, useLocation } from 'react-router-dom';
 import { routes } from '../../../utils/constants/routes';
-
-const api = ky.create({
-  prefixUrl: 'https://6448277d7bb84f5a3e53d41b.mockapi.io/header-info'
-})
+import { apiClient } from '../../../utils/network/apiClient';
 
 interface PageInfoItem {
   name: string;
@@ -21,13 +17,12 @@ export const Header = () => {
   const [pageInfo, setPageInfo] = useState<PageInfoItem[]>([]);
   const [{ name, text }, setData] = useState({ name: '', text: '' });
 
-  React.useEffect(() => {
+  useEffect(() => {
     const getInfoPage = async () => {
-      const json: PageInfoItem[] = await api.get('').json();
+      const response = await apiClient.get<PageInfoItem[]>('/header-desc');
 
-      setPageInfo(json);
+      setPageInfo(response.data)
     };
-
     getInfoPage().catch(console.error);
   }, []);
 

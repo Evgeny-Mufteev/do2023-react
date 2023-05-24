@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import ky from 'ky';
 import Skeleton from '../../Components/Speakers/SpeakersInfo/skeleton';
 
 import styles from './SpeakersPage.module.scss';
@@ -7,10 +6,7 @@ import commonStyles from '../../App.module.scss';
 
 import { SpeakersShowMore } from '../../Components/Speakers/SpeakersShowMore';
 import { type ISpeaker, SpeakersInfo } from '../../Components/Speakers/SpeakersInfo';
-
-const apiSpeakers = ky.create({
-  prefixUrl: 'https://645e79c08d08100293008a13.mockapi.io/api/data'
-})
+import { apiClient } from '../../utils/network/apiClient';
 
 const SpeakersPage = () => {
   const [items, setItems] = useState<ISpeaker[]>([]);
@@ -23,13 +19,12 @@ const SpeakersPage = () => {
 
   useEffect(() => {
     const getSpeakersData = async () => {
-      const data: ISpeaker[] = await apiSpeakers.get('').json();
-
-      setItems(data)
-      setIsLoading(false)
-    }
+      const response = await apiClient.get<ISpeaker[]>('/speakers');
+      setItems(response.data);
+      setIsLoading(false);
+    };
     getSpeakersData().catch(console.error);
-  }, [])
+  }, []);
 
   return (
     <section className={styles.speakers}>

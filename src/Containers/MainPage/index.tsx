@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import ky from 'ky';
 
 import styles from './MainPage.module.scss';
 import commonStyles from '../../App.module.scss';
@@ -7,22 +6,19 @@ import commonStyles from '../../App.module.scss';
 import { type ITickets, MainTickets } from '../../Components/Main/MainTickets';
 import { MainSlider } from '../../Components/Main/MainSlider';
 import MainTimer from '../../Components/Main/MainTimer';
-
-const apiTickets = ky.create({
-  prefixUrl: 'https://64481a0e50c253374438830f.mockapi.io/ticket'
-})
+import { apiClient } from '../../utils/network/apiClient';
 
 const MainPage = () => {
   const [dataTickets, setDataTickets] = useState<ITickets[]>([]);
 
   useEffect(() => {
     const getTickets = async () => {
-      const data: ITickets[] = await apiTickets.get('').json();
+      const response = await apiClient.get<ITickets[]>('/tickets');
 
-      setDataTickets(data)
-    }
+      setDataTickets(response.data)
+    };
     getTickets().catch(console.error);
-  }, [])
+  }, []);
 
   return (
     <>
