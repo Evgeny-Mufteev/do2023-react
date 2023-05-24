@@ -4,7 +4,7 @@ import { Autoplay } from 'swiper';
 
 import styles from './MainSlider.module.scss';
 import 'swiper/css';
-import './styles.css';
+import './styles.scss';
 
 const images = [
   'photogallery1.jpg',
