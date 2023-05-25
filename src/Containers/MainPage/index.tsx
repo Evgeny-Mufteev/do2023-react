@@ -7,6 +7,7 @@ import { type ITickets, MainTickets } from '../../Components/Main/MainTickets';
 import { MainSlider } from '../../Components/Main/MainSlider';
 import MainTimer from '../../Components/Main/MainTimer';
 import { apiClient } from '../../utils/network/apiClient';
+import { Modal } from '../../Components/Commons/Modal';
 
 const MainPage = () => {
   const [dataTickets, setDataTickets] = useState<ITickets[]>([]);
@@ -42,6 +43,7 @@ const MainPage = () => {
       <section className={styles.photogallery}>
         < MainSlider />
       </section>
+      < Modal />
     </>
   )
 }
