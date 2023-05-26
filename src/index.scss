@@ -371,3 +371,22 @@ input::-webkit-inner-spin-button {
   font-weight: 700;
   font-style: normal;
 }
+
+.no-scroll {
+  overflow: hidden;
+  padding-right: 15px;
+}
+
+body::-webkit-scrollbar {
+  width: 15px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #10110D;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #EA6143;
+  border-radius: 2px;
+  border: px solid #EA6143;
+}

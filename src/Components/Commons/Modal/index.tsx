@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import styles from './MainModal.module.scss';
 
@@ -7,10 +7,26 @@ interface IModalProps {
   changeModalActive: (status: boolean) => void;
 }
 
+const addBodyClass = (className: string) => {
+  document.body.classList.add(className);
+}
+
+const removeBodyClass = (className: string) => {
+  document.body.classList.remove(className);
+}
+
 export const Modal = ({ modalActive, changeModalActive }: IModalProps) => {
+  useEffect(() => {
+    if (modalActive) {
+      addBodyClass('no-scroll');
+    } else {
+      removeBodyClass('no-scroll');
+    }
+  }, [modalActive]);
+
   return (
 
-    <div className={modalActive ? `${styles['popup-ticket__wrap']} ${styles.active}` : styles['popup-ticket__wrap']} onClick={() => { changeModalActive(false) }}>
+    <div className={modalActive ? `${styles['popup-ticket__wrap']} ${styles.active}` : styles['popup-ticket__wrap']} onClick={() => { changeModalActive(false); removeBodyClass('no-scroll'); }}>
       <div className={modalActive ? `${styles['popup-ticket__content']} ${styles.active}` : styles['popup-ticket__wrap']} onClick={e => { e.stopPropagation() }}>
 
         <div className={styles['popup-ticket']}>
@@ -51,7 +67,7 @@ export const Modal = ({ modalActive, changeModalActive }: IModalProps) => {
 
               </form>
             </div>
-            <div className={styles['popup-ticket__close']} onClick={() => { changeModalActive(false) }}>
+            <div className={styles['popup-ticket__close']} onClick={() => { changeModalActive(false); removeBodyClass('no-scroll'); }}>
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="28.6418" height="2.47077" transform="matrix(0.707109 -0.707105 0.707109 0.707105 0.000976562 20.2527)" fill="#EEEAEA" />
                 <rect width="28.6418" height="2.47077" transform="matrix(-0.707109 -0.707105 -0.707109 0.707105 22 20.2527)" fill="#EEEAEA" />
