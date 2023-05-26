@@ -11,7 +11,11 @@ export interface ITickets {
   id: number;
 }
 
-export const MainTickets = ({ name, newPrice, oldPrice, options }: ITickets) => {
+interface ITicketsModal extends ITickets {
+  changeModalActive: (status: boolean) => void;
+}
+
+export const MainTickets = ({ name, newPrice, oldPrice, options, changeModalActive }: ITicketsModal) => {
   return (
     <div className={styles.tickets__item}>
       <div className={styles['tickets__item-box']}>
@@ -29,8 +33,10 @@ export const MainTickets = ({ name, newPrice, oldPrice, options }: ITickets) => 
         </ul>
       </div>
       <div className={styles['tickets__item-box']}>
-        <button className={`${AppStyles.btn} ${styles.tickets__btn}`}>Купить</button>
-
+        <button
+          className={`${AppStyles.btn} ${styles.tickets__btn}`}
+          onClick={() => { changeModalActive(true); }}
+        > Купить</button>
       </div>
     </div >
   )

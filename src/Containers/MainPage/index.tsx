@@ -11,6 +11,8 @@ import { Modal } from '../../Components/Commons/Modal';
 
 const MainPage = () => {
   const [dataTickets, setDataTickets] = useState<ITickets[]>([]);
+  const [modalActive, setModalActive] = useState(false);
+  const changeModalActive = (status: boolean) => { setModalActive(status) };
 
   useEffect(() => {
     const getTickets = async () => {
@@ -35,7 +37,7 @@ const MainPage = () => {
           </div>
           <div className={styles['tickets__item-wrap']}>
             {dataTickets.map((obj) => {
-              return <MainTickets key={obj.id} {...obj} />;
+              return <MainTickets key={obj.id} {...obj} changeModalActive={changeModalActive} />;
             })}
           </div>
         </div>
@@ -43,7 +45,11 @@ const MainPage = () => {
       <section className={styles.photogallery}>
         < MainSlider />
       </section>
-      < Modal />
+
+      {modalActive && (
+        < Modal modalActive={modalActive} changeModalActive={changeModalActive} />
+      )}
+
     </>
   )
 }
