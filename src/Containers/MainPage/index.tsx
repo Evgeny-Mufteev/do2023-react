@@ -47,7 +47,11 @@ const MainPage = () => {
       </section>
 
       {modalActive && (
-        < Modal modalActive={modalActive} changeModalActive={changeModalActive} />
+        < Modal
+          modalActive={modalActive}
+          changeModalActive={changeModalActive}
+          onClose={() => { changeModalActive(false); }}
+        />
       )}
 
     </>

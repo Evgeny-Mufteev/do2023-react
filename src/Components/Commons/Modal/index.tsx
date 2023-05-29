@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react'
 
 import styles from './MainModal.module.scss';
+import classNames from 'classnames';
 
 interface IModalProps {
   modalActive: boolean;
   changeModalActive: (status: boolean) => void;
+  onClose: () => void;
 }
 
 const addBodyClass = (className: string) => {
@@ -15,7 +17,14 @@ const removeBodyClass = (className: string) => {
   document.body.classList.remove(className);
 }
 
-export const Modal = ({ modalActive, changeModalActive }: IModalProps) => {
+export const Modal = ({ modalActive, changeModalActive, onClose }: IModalProps) => {
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key === 'Escape') {
+      onClose();
+      removeBodyClass('no-scroll');
+    }
+  };
+
   useEffect(() => {
     if (modalActive) {
       addBodyClass('no-scroll');
@@ -24,10 +33,26 @@ export const Modal = ({ modalActive, changeModalActive }: IModalProps) => {
     }
   }, [modalActive]);
 
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   return (
 
-    <div className={modalActive ? `${styles['popup-ticket__wrap']} ${styles.active}` : styles['popup-ticket__wrap']} onClick={() => { changeModalActive(false); removeBodyClass('no-scroll'); }}>
-      <div className={modalActive ? `${styles['popup-ticket__content']} ${styles.active}` : styles['popup-ticket__wrap']} onClick={e => { e.stopPropagation() }}>
+    <div
+      className={classNames(styles['popup-ticket__wrap'], {
+        [styles.active]: modalActive,
+      })}
+      onClick={() => { changeModalActive(false); removeBodyClass('no-scroll'); }}>
+      <div
+        className={classNames(styles['popup-ticket__content'], {
+          [styles.active]: modalActive,
+        })}
+        onClick={e => { e.stopPropagation() }}
+      >
 
         <div className={styles['popup-ticket']}>
           <div className={styles['popup-ticket__inner']}>
