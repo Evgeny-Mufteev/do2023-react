@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import styles from './MainModal.module.scss';
 import classNames from 'classnames';
+import { CustomInput } from '../CustomInput';
 
 interface IModalProps {
   modalActive: boolean;
@@ -41,6 +42,12 @@ export const Modal = ({ modalActive, changeModalActive, onClose }: IModalProps) 
     };
   }, []);
 
+  const [text, setText] = useState('');
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setText(event.target.value);
+  };
+
   return (
 
     <div
@@ -66,16 +73,35 @@ export const Modal = ({ modalActive, changeModalActive, onClose }: IModalProps) 
               <form action="#1" className={styles['form-ticket']} method="get" name="form-ticket">
 
                 <div className={styles['popup-ticket__box']}>
+
                   <div className={styles['popup-ticket__input-wrap']}>
-                    <input type="text" className={styles['popup-ticket__input']} placeholder="ФИО" name="full-name" />
+                    <CustomInput
+                      type="text"
+                      value={text}
+                      placeholder="ФИО"
+                      onChange={handleChange}
+                      name='full-name'
+                    />
                   </div>
 
                   <div className={styles['popup-ticket__input-wrap']}>
-                    <input type="email" className={styles['popup-ticket__input']} placeholder="Email*" required name="email" />
+                    <CustomInput
+                      type="email"
+                      value={text}
+                      placeholder="Email*"
+                      onChange={handleChange}
+                      name='email'
+                    />
                   </div>
 
                   <div className={styles['popup-ticket__input-wrap']}>
-                    <input type="tel" className={styles['popup-ticket__input']} placeholder="Номер телефона*" required name="phone" />
+                    <CustomInput
+                      type="tel"
+                      value={text}
+                      placeholder="Номер телефона*"
+                      onChange={handleChange}
+                      name='phone'
+                    />
                   </div>
 
                   <div className={styles['popup-ticket__checkbox-wrap']}>
@@ -88,9 +114,9 @@ export const Modal = ({ modalActive, changeModalActive, onClose }: IModalProps) 
                       </span>
                     </label>
                   </div>
+
                 </div>
                 <button type="submit" className={`${styles.btn} ${styles['red-btn']}`}>Перейти к оплате</button>
-                <input type="hidden" className={styles['js-select-tickets']} name="select-tickets" />
 
               </form>
             </div>

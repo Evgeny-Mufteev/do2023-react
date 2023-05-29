@@ -99,6 +99,16 @@
   text-transform: uppercase;
   color: #FFFFFF;
   user-select: none;
+
+  &:focus {
+    border: none;
+    outline: none;
+  }
+
+  &:active {
+    border: none;
+    outline: none;
+  }
 }
 
 .tickets__description-item {
