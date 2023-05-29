@@ -18,22 +18,23 @@ const removeBodyClass = (className: string) => {
 }
 
 export const Modal = ({ modalActive, changeModalActive, onClose }: IModalProps) => {
-  const handleKeyDown = (event: KeyboardEvent) => {
-    if (event.key === 'Escape') {
-      onClose();
-      removeBodyClass('no-scroll');
-    }
-  };
-
   useEffect(() => {
     if (modalActive) {
       addBodyClass('no-scroll');
     } else {
       removeBodyClass('no-scroll');
     }
+    return () => {
+      removeBodyClass('no-scroll');
+    };
   }, [modalActive]);
 
   useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
     document.addEventListener('keydown', handleKeyDown);
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
@@ -43,10 +44,11 @@ export const Modal = ({ modalActive, changeModalActive, onClose }: IModalProps) 
   return (
 
     <div
+      role="button"
       className={classNames(styles['popup-ticket__wrap'], {
         [styles.active]: modalActive,
       })}
-      onClick={() => { changeModalActive(false); removeBodyClass('no-scroll'); }}>
+      onClick={() => { changeModalActive(false); }}>
       <div
         className={classNames(styles['popup-ticket__content'], {
           [styles.active]: modalActive,
@@ -92,12 +94,12 @@ export const Modal = ({ modalActive, changeModalActive, onClose }: IModalProps) 
 
               </form>
             </div>
-            <div className={styles['popup-ticket__close']} onClick={() => { changeModalActive(false); removeBodyClass('no-scroll'); }}>
+            <button className={styles['popup-ticket__close']} onClick={() => { changeModalActive(false); }}>
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="28.6418" height="2.47077" transform="matrix(0.707109 -0.707105 0.707109 0.707105 0.000976562 20.2527)" fill="#EEEAEA" />
                 <rect width="28.6418" height="2.47077" transform="matrix(-0.707109 -0.707105 -0.707109 0.707105 22 20.2527)" fill="#EEEAEA" />
               </svg>
-            </div>
+            </button>
           </div>
         </div>
       </div>
