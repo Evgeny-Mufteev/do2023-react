@@ -42,10 +42,19 @@ export const Modal = ({ modalActive, changeModalActive, onClose }: IModalProps) 
     };
   }, []);
 
-  const [text, setText] = useState('');
+  const [formState, setFormState] = useState({
+    fullName: '',
+    email: '',
+    phone: ''
+  });
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setText(event.target.value);
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+
+    setFormState(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
   };
 
   return (
@@ -77,35 +86,39 @@ export const Modal = ({ modalActive, changeModalActive, onClose }: IModalProps) 
                   <div className={styles['popup-ticket__input-wrap']}>
                     <CustomInput
                       type="text"
-                      value={text}
+                      value={formState.fullName}
                       placeholder="ФИО"
-                      onChange={handleChange}
-                      name='full-name'
+                      onChange={handleInputChange}
+                      name='fullName'
                     />
                   </div>
 
                   <div className={styles['popup-ticket__input-wrap']}>
                     <CustomInput
                       type="email"
-                      value={text}
+                      value={formState.email}
                       placeholder="Email*"
-                      onChange={handleChange}
+                      onChange={handleInputChange}
                       name='email'
                     />
                   </div>
 
                   <div className={styles['popup-ticket__input-wrap']}>
                     <CustomInput
-                      type="tel"
-                      value={text}
+                      type="number"
+                      value={formState.phone}
                       placeholder="Номер телефона*"
-                      onChange={handleChange}
+                      onChange={handleInputChange}
                       name='phone'
                     />
                   </div>
 
                   <div className={styles['popup-ticket__checkbox-wrap']}>
-                    <input type="checkbox" className={styles['popup-ticket__checkbox']} id="privacy-policy" name="privacy-policy" required />
+                    <input className={styles['popup-ticket__checkbox']}
+                      type="checkbox"
+                      id="privacy-policy"
+                      name="privacy-policy"
+                      required />
                     <label htmlFor="privacy-policy">
                       <span className={styles['privacy-policy__text']}>
                         Я согласен на обработку персональных данных и ознакомился с
