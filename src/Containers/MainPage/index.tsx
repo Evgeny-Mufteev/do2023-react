@@ -12,6 +12,8 @@ import { Modal } from '../../Components/Commons/Modal';
 const MainPage = () => {
   const [dataTickets, setDataTickets] = useState<ITickets[]>([]);
   const [modalActive, setModalActive] = useState(false);
+  const [selectedTicketId, setSelectedTicketId] = useState<number | null>(null);
+
   const changeModalActive = (status: boolean) => { setModalActive(status) };
 
   useEffect(() => {
@@ -24,6 +26,7 @@ const MainPage = () => {
   }, []);
 
   return (
+
     <>
       <section className={styles.tickets}>
         <div className={commonStyles.container}>
@@ -37,7 +40,10 @@ const MainPage = () => {
           </div>
           <div className={styles['tickets__item-wrap']}>
             {dataTickets.map((obj) => {
-              return <MainTickets key={obj.id} {...obj} changeModalActive={changeModalActive} />;
+              return <MainTickets
+                key={obj.id} {...obj}
+                changeModalActive={changeModalActive}
+                setSelectedTicketId={setSelectedTicketId} />;
             })}
           </div>
         </div>
@@ -46,13 +52,15 @@ const MainPage = () => {
         < MainSlider />
       </section>
 
-      {modalActive && (
-        < Modal
-          modalActive={modalActive}
-          changeModalActive={changeModalActive}
-          onClose={() => { changeModalActive(false); }}
-        />
-      )}
+      {
+        modalActive && (
+          < Modal
+            modalActive={modalActive}
+            changeModalActive={changeModalActive}
+            onClose={() => { changeModalActive(false); }}
+          />
+        )
+      }
 
     </>
   )

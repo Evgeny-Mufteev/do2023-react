@@ -10,6 +10,10 @@ interface IModalProps {
   onClose: () => void;
 }
 
+// interface IModalIdProps extends IModalProps {
+//   ticketId: number | null;
+// }
+
 const addBodyClass = (className: string) => {
   document.body.classList.add(className);
 }
