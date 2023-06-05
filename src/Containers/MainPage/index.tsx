@@ -58,6 +58,7 @@ const MainPage = () => {
             modalActive={modalActive}
             changeModalActive={changeModalActive}
             onClose={() => { changeModalActive(false); }}
+            selectedTicketId={selectedTicketId}
           />
         )
       }

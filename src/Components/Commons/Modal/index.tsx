@@ -4,15 +4,17 @@ import styles from './MainModal.module.scss';
 import classNames from 'classnames';
 import { CustomInput } from '../CustomInput';
 
+import { MainTickets } from '../../Main/MainTickets';
+
 interface IModalProps {
   modalActive: boolean;
   changeModalActive: (status: boolean) => void;
   onClose: () => void;
 }
 
-// interface IModalIdProps extends IModalProps {
-//   ticketId: number | null;
-// }
+interface IModalPropsId extends IModalProps {
+  selectedTicketId: number | null;
+}
 
 const addBodyClass = (className: string) => {
   document.body.classList.add(className);
@@ -22,7 +24,7 @@ const removeBodyClass = (className: string) => {
   document.body.classList.remove(className);
 }
 
-export const Modal = ({ modalActive, changeModalActive, onClose }: IModalProps) => {
+export const Modal = ({ modalActive, changeModalActive, onClose, selectedTicketId }: IModalPropsId) => {
   useEffect(() => {
     if (modalActive) {
       addBodyClass('no-scroll');
@@ -83,7 +85,7 @@ export const Modal = ({ modalActive, changeModalActive, onClose }: IModalProps) 
                 <h4 className={styles['popup-ticket__title']}>Купить билет</h4>
                 <p className={styles['popup-ticket__subtitle']}>Перед оплатой необходимо оставить свои актуальные контактные данные</p>
               </div>
-              <form action="#1" className={styles['form-ticket']} method="get" name="form-ticket">
+              <form action="#1" className={styles['form-ticket']} method="get" name="form-ticket" id={selectedTicketId?.toString()}>
 
                 <div className={styles['popup-ticket__box']}>
 
