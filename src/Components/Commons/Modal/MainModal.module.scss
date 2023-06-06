@@ -20,6 +20,24 @@
     transition: 0.5s;
     pointer-events: none;
 
+    .error {
+      font-size: 10px;
+      position: absolute;
+      top: 50px;
+      left: 0;
+      color: red;
+    }
+
+    .error__policy {
+      font-size: 10px;
+      position: absolute;
+      top: 50px;
+      left: 0;
+      color: red;
+    }
+
+
+
     &.active {
       opacity: 1;
       pointer-events: all;
@@ -210,4 +228,15 @@
   text-transform: uppercase;
   transition: all .4s ease;
   border: none;
+}
+
+.popup-ticket__input {
+  border: 1px solid #878886;
+  border-radius: 4px;
+  background: #10110D;
+  width: 386px;
+  height: 44px;
+  outline: none;
+  padding: 12px 14px;
+  margin-bottom: 32px;
 }

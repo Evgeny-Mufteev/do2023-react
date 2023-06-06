@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 
+import { useForm } from 'react-hook-form';
 import styles from './MainModal.module.scss';
 import classNames from 'classnames';
-import { CustomInput } from '../CustomInput';
-
-import { MainTickets } from '../../Main/MainTickets';
+// import { CustomInput } from '../CustomInput';
 
 interface IModalProps {
   modalActive: boolean;
@@ -14,6 +13,13 @@ interface IModalProps {
 
 interface IModalPropsId extends IModalProps {
   selectedTicketId: number | null;
+}
+
+interface IFormData {
+  fullName: string;
+  email: string;
+  phone: string;
+  privacyPolicy: boolean;
 }
 
 const addBodyClass = (className: string) => {
@@ -48,19 +54,11 @@ export const Modal = ({ modalActive, changeModalActive, onClose, selectedTicketI
     };
   }, []);
 
-  const [formState, setFormState] = useState({
-    fullName: '',
-    email: '',
-    phone: ''
-  });
+  const { register, handleSubmit, formState: { errors } } = useForm<IFormData>();
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-
-    setFormState(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
+  const onSubmit = (data: IFormData, selectedTicketId: number | null) => {
+    console.log(data);
+    console.log(selectedTicketId);
   };
 
   return (
@@ -85,46 +83,76 @@ export const Modal = ({ modalActive, changeModalActive, onClose, selectedTicketI
                 <h4 className={styles['popup-ticket__title']}>Купить билет</h4>
                 <p className={styles['popup-ticket__subtitle']}>Перед оплатой необходимо оставить свои актуальные контактные данные</p>
               </div>
-              <form action="#1" className={styles['form-ticket']} method="get" name="form-ticket" id={selectedTicketId?.toString()}>
+              <form
+                onSubmit={handleSubmit((data) => { onSubmit(data, selectedTicketId); })}
+                action="#1"
+                className={styles['form-ticket']}
+                method="get"
+                name="form-ticket"
+                id={selectedTicketId?.toString()}
+              >
 
                 <div className={styles['popup-ticket__box']}>
 
                   <div className={styles['popup-ticket__input-wrap']}>
-                    <CustomInput
+                    <input
+                      className={styles['popup-ticket__input']}
                       type="text"
-                      value={formState.fullName}
                       placeholder="ФИО"
-                      onChange={handleInputChange}
-                      name='fullName'
+                      {...register('fullName', { required: true })}
                     />
+                    {errors.fullName && (
+                      <span className={styles.error}>Поле ФИО обязательно для заполнения</span>
+                    )}
                   </div>
 
                   <div className={styles['popup-ticket__input-wrap']}>
-                    <CustomInput
+                    <input
+                      className={styles['popup-ticket__input']}
                       type="email"
-                      value={formState.email}
                       placeholder="Email*"
-                      onChange={handleInputChange}
-                      name='email'
+                      {...register('email', { required: true, pattern: /^\S+@\S+$/i })}
                     />
+                    {errors.email?.type === 'required' && (
+                      <span className={styles.error}>Поле Email обязательно для заполнения</span>
+                    )}
+                    {errors.email?.type === 'pattern' && (
+                      <span className={styles.error}>Email должен быть валидным</span>
+                    )}
                   </div>
 
                   <div className={styles['popup-ticket__input-wrap']}>
-                    <CustomInput
+                    <input
+                      className={styles['popup-ticket__input']}
                       type="number"
-                      value={formState.phone}
                       placeholder="Номер телефона*"
-                      onChange={handleInputChange}
-                      name='phone'
+                      {...register('phone', {
+                        required: true,
+                        minLength: 10,
+                        maxLength: 15,
+                        pattern: /^[0-9\b()+-]{10,15}$/i,
+                      })}
                     />
+                    {errors.phone?.type === 'required' && (
+                      <span className={styles.error}>Поле Номер телефона обязательно для заполнения</span>
+                    )}
+                    {errors.phone?.type === 'minLength' && (
+                      <span className={styles.error}>Номер телефона должен содержать не менее 10 цифр</span>
+                    )}
+                    {errors.phone?.type === 'maxLength' && (
+                      <span className={styles.error}>Номер телефона должен содержать не более 15 цифр</span>
+                    )}
+                    {errors.phone?.type === 'pattern' && (
+                      <span className={styles.error}>Номер телефона должен быть валидным</span>
+                    )}
                   </div>
 
                   <div className={styles['popup-ticket__checkbox-wrap']}>
                     <input className={styles['popup-ticket__checkbox']}
                       type="checkbox"
                       id="privacy-policy"
-                      name="privacy-policy"
-                      required />
+                      {...register('privacyPolicy', { required: true })}
+                    />
                     <label htmlFor="privacy-policy">
                       <span className={styles['privacy-policy__text']}>
                         Я согласен на обработку персональных данных и ознакомился с
@@ -132,6 +160,9 @@ export const Modal = ({ modalActive, changeModalActive, onClose, selectedTicketI
                           политикой конфиденциальности</a>
                       </span>
                     </label>
+                    {errors.privacyPolicy && (
+                      <span className={styles.error__policy}>Вы должны согласиться с политикой конфиденциальности</span>
+                    )}
                   </div>
 
                 </div>

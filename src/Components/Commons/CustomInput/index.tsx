@@ -3,7 +3,7 @@ import styles from './CustomInput.module.scss';
 
 interface ICustomInputProps {
   type: string;
-  value: string;
+  value?: string;
   placeholder?: string;
   name: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
