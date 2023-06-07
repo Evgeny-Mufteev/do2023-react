@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, forwardRef } from 'react'
 
 import { useForm } from 'react-hook-form';
 import styles from './MainModal.module.scss';
 import classNames from 'classnames';
+import { PatternFormat } from 'react-number-format';
+// import NumberFormat from 'react-number-format/dist/react-number-format.esm';
 // import { CustomInput } from '../CustomInput';
 
 interface IModalProps {
@@ -20,6 +22,7 @@ interface IFormData {
   email: string;
   phone: string;
   privacyPolicy: boolean;
+  ticketId: string
 }
 
 const addBodyClass = (className: string) => {
@@ -56,9 +59,8 @@ export const Modal = ({ modalActive, changeModalActive, onClose, selectedTicketI
 
   const { register, handleSubmit, formState: { errors } } = useForm<IFormData>();
 
-  const onSubmit = (data: IFormData, selectedTicketId: number | null) => {
+  const onSubmit = (data: IFormData) => {
     console.log(data);
-    console.log(selectedTicketId);
   };
 
   return (
@@ -84,12 +86,9 @@ export const Modal = ({ modalActive, changeModalActive, onClose, selectedTicketI
                 <p className={styles['popup-ticket__subtitle']}>Перед оплатой необходимо оставить свои актуальные контактные данные</p>
               </div>
               <form
-                onSubmit={handleSubmit((data) => { onSubmit(data, selectedTicketId); })}
-                action="#1"
+                onSubmit={handleSubmit((data) => { onSubmit(data); })}
                 className={styles['form-ticket']}
-                method="get"
                 name="form-ticket"
-                id={selectedTicketId?.toString()}
               >
 
                 <div className={styles['popup-ticket__box']}>
@@ -122,9 +121,11 @@ export const Modal = ({ modalActive, changeModalActive, onClose, selectedTicketI
                   </div>
 
                   <div className={styles['popup-ticket__input-wrap']}>
-                    <input
+                    <PatternFormat
                       className={styles['popup-ticket__input']}
-                      type="number"
+                      format="+7 (###) ###-##-##"
+                      valueIsNumericString
+                      mask="_"
                       placeholder="Номер телефона*"
                       {...register('phone', {
                         required: true,
@@ -167,7 +168,7 @@ export const Modal = ({ modalActive, changeModalActive, onClose, selectedTicketI
 
                 </div>
                 <button type="submit" className={`${styles.btn} ${styles['red-btn']}`}>Перейти к оплате</button>
-
+                <input type="hidden" defaultValue={selectedTicketId?.toString()} {...register('ticketId')} />
               </form>
             </div>
             <button className={styles['popup-ticket__close']} onClick={() => { changeModalActive(false); }}>
