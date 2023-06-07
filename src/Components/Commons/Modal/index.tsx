@@ -1,9 +1,9 @@
-import React, { useEffect, forwardRef } from 'react'
+import React, { useEffect } from 'react'
 
 import { useForm } from 'react-hook-form';
 import styles from './MainModal.module.scss';
 import classNames from 'classnames';
-import { PatternFormat } from 'react-number-format';
+import axios from 'axios';
 // import NumberFormat from 'react-number-format/dist/react-number-format.esm';
 // import { CustomInput } from '../CustomInput';
 
@@ -59,8 +59,13 @@ export const Modal = ({ modalActive, changeModalActive, onClose, selectedTicketI
 
   const { register, handleSubmit, formState: { errors } } = useForm<IFormData>();
 
-  const onSubmit = (data: IFormData) => {
-    console.log(data);
+  const onSubmit = async (data: IFormData) => {
+    try {
+      const response = await axios.post('http://127.0.0.1:3123/selectTickets', data);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -86,7 +91,7 @@ export const Modal = ({ modalActive, changeModalActive, onClose, selectedTicketI
                 <p className={styles['popup-ticket__subtitle']}>Перед оплатой необходимо оставить свои актуальные контактные данные</p>
               </div>
               <form
-                onSubmit={handleSubmit((data) => { onSubmit(data); })}
+                onSubmit={handleSubmit((data) => { void onSubmit(data); })}
                 className={styles['form-ticket']}
                 name="form-ticket"
               >
@@ -121,11 +126,9 @@ export const Modal = ({ modalActive, changeModalActive, onClose, selectedTicketI
                   </div>
 
                   <div className={styles['popup-ticket__input-wrap']}>
-                    <PatternFormat
+                    <input
                       className={styles['popup-ticket__input']}
-                      format="+7 (###) ###-##-##"
-                      valueIsNumericString
-                      mask="_"
+                      type="number"
                       placeholder="Номер телефона*"
                       {...register('phone', {
                         required: true,
