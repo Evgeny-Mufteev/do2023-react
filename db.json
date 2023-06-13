@@ -308,14 +308,6 @@
     {
       "id": 3,
       "title": "Post 3"
-    },
-    {
-      "fullName": "Андрей",
-      "email": "pugalo@ya.ru",
-      "phone": "455645645645",
-      "privacyPolicy": true,
-      "ticketId": "1",
-      "id": 4
     }
   ]
 }

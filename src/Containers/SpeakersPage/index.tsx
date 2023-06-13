@@ -8,10 +8,15 @@ import { SpeakersShowMore } from '../../Components/Speakers/SpeakersShowMore';
 import { type ISpeaker, SpeakersInfo } from '../../Components/Speakers/SpeakersInfo';
 import { apiClient } from '../../utils/network/apiClient';
 
+import { useDispatch } from 'react-redux';
+import { setSpeakers } from '../../store/speakers';
+
 const SpeakersPage = () => {
   const [items, setItems] = useState<ISpeaker[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [amountItems, setAmountItems] = useState(4)
+
+  const dispatch = useDispatch();
 
   const handleClickLoadMore = () => {
     setAmountItems(amountItems + 4);
@@ -21,6 +26,7 @@ const SpeakersPage = () => {
     const getSpeakersData = async () => {
       const response = await apiClient.get<ISpeaker[]>('/speakers');
       setItems(response.data);
+      // dispatch(setSpeakers(response.data));
       setIsLoading(false);
     };
     getSpeakersData().catch(console.error);
