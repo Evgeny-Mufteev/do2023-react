@@ -1,35 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import Skeleton from '../../Components/Speakers/SpeakersInfo/skeleton';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { getSpeakers } from '../../store/speakers/effects';
+import { getSpeakersSelector, getSpeakersIsError, getSpeakersIsLoading } from '../../store/speakers/selectors';
+
 import styles from './SpeakersPage.module.scss';
 import commonStyles from '../../App.module.scss';
 
 import { SpeakersShowMore } from '../../Components/Speakers/SpeakersShowMore';
-import { type ISpeaker, SpeakersInfo } from '../../Components/Speakers/SpeakersInfo';
-import { apiClient } from '../../utils/network/apiClient';
-
-import { useDispatch } from 'react-redux';
-import { setSpeakers } from '../../store/speakers';
+import { SpeakersInfo } from '../../Components/Speakers/SpeakersInfo';
 
 const SpeakersPage = () => {
-  const [items, setItems] = useState<ISpeaker[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [amountItems, setAmountItems] = useState(4)
-
   const dispatch = useDispatch();
+  const speakers = useSelector(getSpeakersSelector);
+  const isError = useSelector(getSpeakersIsError);
+  const isLoading = useSelector(getSpeakersIsLoading);
+
+  const [amountItems, setAmountItems] = useState(4)
 
   const handleClickLoadMore = () => {
     setAmountItems(amountItems + 4);
   };
 
   useEffect(() => {
-    const getSpeakersData = async () => {
-      const response = await apiClient.get<ISpeaker[]>('/speakers');
-      setItems(response.data);
-      // dispatch(setSpeakers(response.data));
-      setIsLoading(false);
-    };
-    getSpeakersData().catch(console.error);
+    dispatch(getSpeakers());
   }, []);
 
   return (
@@ -40,12 +35,13 @@ const SpeakersPage = () => {
           {
             isLoading
               ? [...new Array(4)].map((_, index) => <Skeleton key={index} />)
-              : items.slice(0, amountItems).map((obj) => <SpeakersInfo key={obj.id} {...obj} />)
+              : speakers.slice(0, amountItems).map((obj) => <SpeakersInfo key={obj.id} {...obj} />)
           }
+          {isError && <span>Error</span>}
 
         </div>
         {
-          amountItems < items.length
+          amountItems < speakers.length
             ? <SpeakersShowMore handleClickLoadMore={handleClickLoadMore} />
             : null
         }

@@ -1,13 +1,6 @@
 import React from 'react'
 import styles from './SpeakersInfo.module.scss';
-
-export interface ISpeaker {
-  id: number;
-  imageUrl: string;
-  name: string;
-  jobTitle: string;
-  city: string;
-}
+import { type ISpeaker } from '../../../types';
 
 export const SpeakersInfo = ({ imageUrl, name, jobTitle, city }: ISpeaker) => {
   return (
