@@ -1,28 +1,17 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
 
 import styles from './MainTickets.module.scss';
 import AppStyles from '../../../App.module.scss';
-
-export interface ITickets {
-  name: string;
-  newPrice: number;
-  oldPrice: number;
-  options: string[];
-  id: number;
-}
-
-interface ITicketsModal extends ITickets {
-  changeModalActive: (status: boolean) => void;
-}
-
-interface ITicketsModalId extends ITicketsModal {
-  setSelectedTicketId: (ticketId: number | null) => void
-}
+import { type ITicketsModal } from '../../../types';
+import { setSelectedTicketId } from '../../../store/tickets';
 
 export const MainTickets = (
-  { name, newPrice, oldPrice, options, changeModalActive, id, setSelectedTicketId }: ITicketsModalId) => {
+  { name, newPrice, oldPrice, options, changeModalActive, id }: ITicketsModal) => {
+  const dispatch = useDispatch();
+
   const handleTicketClick = (id: number) => {
-    setSelectedTicketId(id);
+    dispatch(setSelectedTicketId(id));
   };
 
   return (
@@ -48,6 +37,7 @@ export const MainTickets = (
             changeModalActive(true);
             handleTicketClick(id);
           }}>
+
           Купить
         </button>
       </div>

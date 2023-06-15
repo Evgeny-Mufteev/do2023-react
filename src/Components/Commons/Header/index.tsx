@@ -1,40 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Header.module.scss';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { getHeaderDesc } from '../../../store/header/effects';
+import { getHeaderDescSelector } from '../../../store/header/selectors';
+
 import { Link, useLocation } from 'react-router-dom';
 import { routes } from '../../../utils/constants/routes';
-import { apiClient } from '../../../utils/network/apiClient';
-
-interface PageInfoItem {
-  name: string;
-  text: string;
-  pageName: string;
-  id: string;
-}
 
 export const Header = () => {
+  const dispatch = useDispatch();
+  const headerDesc = useSelector(getHeaderDescSelector);
+
   const { pathname } = useLocation();
-  const [pageInfo, setPageInfo] = useState<PageInfoItem[]>([]);
   const [{ name, text }, setData] = useState({ name: '', text: '' });
 
   useEffect(() => {
-    const getInfoPage = async () => {
-      const response = await apiClient.get<PageInfoItem[]>('/header-desc');
-
-      setPageInfo(response.data)
-    };
-    getInfoPage().catch(console.error);
+    dispatch(getHeaderDesc());
   }, []);
 
   React.useEffect(() => {
     console.log(pathname);
 
-    const item = pageInfo.find((el) => el.pageName === pathname.slice(1)) ?? pageInfo[0];
+    const item = headerDesc.find((el) => el.pageName === pathname.slice(1)) ?? headerDesc[0];
 
     if (item) {
       setData({ name: item.name, text: item.text });
     }
-  }, [pathname, pageInfo.length]
+  }, [pathname, headerDesc.length]
   );
   return (
     <header className={styles.header}>

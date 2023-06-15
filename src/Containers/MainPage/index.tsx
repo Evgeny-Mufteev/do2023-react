@@ -3,26 +3,27 @@ import React, { useEffect, useState } from 'react'
 import styles from './MainPage.module.scss';
 import commonStyles from '../../App.module.scss';
 
-import { type ITickets, MainTickets } from '../../Components/Main/MainTickets';
+import { useDispatch, useSelector } from 'react-redux';
+import { getTickets } from '../../store/tickets/effects';
+import { getTicketsSelector, getTicketsIsError, getTicketsIsLoading } from '../../store/tickets/selectors';
+
+import { MainTickets } from '../../Components/Main/MainTickets';
 import { MainSlider } from '../../Components/Main/MainSlider';
 import MainTimer from '../../Components/Main/MainTimer';
-import { apiClient } from '../../utils/network/apiClient';
 import { Modal } from '../../Components/Commons/Modal';
 
 const MainPage = () => {
-  const [dataTickets, setDataTickets] = useState<ITickets[]>([]);
+  const dispatch = useDispatch();
+  const tickets = useSelector(getTicketsSelector);
+  const isError = useSelector(getTicketsIsError);
+  const isLoading = useSelector(getTicketsIsLoading);
+
   const [modalActive, setModalActive] = useState(false);
-  const [selectedTicketId, setSelectedTicketId] = useState<number | null>(null);
 
   const changeModalActive = (status: boolean) => { setModalActive(status) };
 
   useEffect(() => {
-    const getTickets = async () => {
-      const response = await apiClient.get<ITickets[]>('/tickets');
-
-      setDataTickets(response.data)
-    };
-    getTickets().catch(console.error);
+    dispatch(getTickets());
   }, []);
 
   return (
@@ -39,12 +40,14 @@ const MainPage = () => {
             <MainTimer />
           </div>
           <div className={styles['tickets__item-wrap']}>
-            {dataTickets.map((obj) => {
+            {tickets.map((obj) => {
               return <MainTickets
                 key={obj.id} {...obj}
                 changeModalActive={changeModalActive}
-                setSelectedTicketId={setSelectedTicketId} />;
+              />;
             })}
+            {isLoading && <span>Loading...</span>}
+            {isError && <span>Error</span>}
           </div>
         </div>
       </section>
@@ -58,7 +61,6 @@ const MainPage = () => {
             modalActive={modalActive}
             changeModalActive={changeModalActive}
             onClose={() => { changeModalActive(false); }}
-            selectedTicketId={selectedTicketId}
           />
         )
       }

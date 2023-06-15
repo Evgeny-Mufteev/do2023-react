@@ -1,8 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { speakersDataNameReducer, speakersDataReducer } from './speakers';
+import { ticketsDataNameReducer, ticketsDataReducer } from './tickets';
+import { headerDescDataNameReducer, headerDescDataReducer } from './header';
 
 const rootReducer = combineReducers({
   [speakersDataNameReducer]: speakersDataReducer,
+  [ticketsDataNameReducer]: ticketsDataReducer,
+  [headerDescDataNameReducer]: headerDescDataReducer,
 });
 
 export const store = configureStore({

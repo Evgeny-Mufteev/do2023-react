@@ -1,20 +1,16 @@
 import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux';
 
 import { useForm } from 'react-hook-form';
 import styles from './MainModal.module.scss';
 import classNames from 'classnames';
 import axios from 'axios';
-// import NumberFormat from 'react-number-format/dist/react-number-format.esm';
-// import { CustomInput } from '../CustomInput';
+import { type ITicketsState } from '../../../store/tickets';
 
 interface IModalProps {
   modalActive: boolean;
   changeModalActive: (status: boolean) => void;
   onClose: () => void;
-}
-
-interface IModalPropsId extends IModalProps {
-  selectedTicketId: number | null;
 }
 
 interface IFormData {
@@ -33,7 +29,7 @@ const removeBodyClass = (className: string) => {
   document.body.classList.remove(className);
 }
 
-export const Modal = ({ modalActive, changeModalActive, onClose, selectedTicketId }: IModalPropsId) => {
+export const Modal = ({ modalActive, changeModalActive, onClose }: IModalProps) => {
   useEffect(() => {
     if (modalActive) {
       addBodyClass('no-scroll');
@@ -67,6 +63,8 @@ export const Modal = ({ modalActive, changeModalActive, onClose, selectedTicketI
       console.error(error);
     }
   };
+
+  const selectedTicketId = useSelector((state: ITicketsState) => state.tickets.selectedTicketId);
 
   return (
 
