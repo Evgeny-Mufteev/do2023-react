@@ -65,6 +65,7 @@ export const Modal = ({ modalActive, changeModalActive, onClose }: IModalProps) 
   };
 
   const selectedTicketId = useSelector((state: ITicketsState) => state.tickets.selectedTicketId);
+  console.log(selectedTicketId);
 
   return (
 
