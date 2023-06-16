@@ -12,6 +12,7 @@ export const MainTickets = (
 
   const handleTicketClick = (id: number) => {
     dispatch(setSelectedTicketId(id));
+    console.log(`выбран id ${id}`);
   };
 
   return (

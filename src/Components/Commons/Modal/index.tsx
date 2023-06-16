@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
+import { selectedTicketId } from '../../../store/tickets/selectors';
 
 import { useForm } from 'react-hook-form';
 import styles from './MainModal.module.scss';
@@ -30,6 +31,7 @@ const removeBodyClass = (className: string) => {
 }
 
 export const Modal = ({ modalActive, changeModalActive, onClose }: IModalProps) => {
+  const ticketId = useSelector(selectedTicketId);
   useEffect(() => {
     if (modalActive) {
       addBodyClass('no-scroll');
@@ -63,9 +65,6 @@ export const Modal = ({ modalActive, changeModalActive, onClose }: IModalProps) 
       console.error(error);
     }
   };
-
-  const selectedTicketId = useSelector((state: ITicketsState) => state.tickets.selectedTicketId);
-  console.log(selectedTicketId);
 
   return (
 
@@ -170,7 +169,9 @@ export const Modal = ({ modalActive, changeModalActive, onClose }: IModalProps) 
 
                 </div>
                 <button type="submit" className={`${styles.btn} ${styles['red-btn']}`}>Перейти к оплате</button>
-                <input type="hidden" defaultValue={selectedTicketId?.toString()} {...register('ticketId')} />
+                <input type="hidden"
+                  defaultValue={ticketId?.toString()}
+                  {...register('ticketId')} />
               </form>
             </div>
             <button className={styles['popup-ticket__close']} onClick={() => { changeModalActive(false); }}>

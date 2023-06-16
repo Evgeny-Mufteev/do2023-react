@@ -7,3 +7,5 @@ export const getTicketsSelector = createSelector(getTicketsState, ({ tickets }) 
 export const getTicketsIsError = createSelector(getTicketsState, ({ tickets }) => tickets.isError);
 export const getTicketsIsSuccess = createSelector(getTicketsState, ({ tickets }) => tickets.isSuccess);
 export const getTicketsIsLoading = createSelector(getTicketsState, ({ tickets }) => tickets.isLoading);
+
+export const selectedTicketId = createSelector(getTicketsState, ({ tickets }) => tickets.selectedTicketId);
