@@ -34,7 +34,8 @@
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d build",
     "predeploy": "npm run build",
-    "mock:server": "json-server db.json --host=127.0.0.1 --port 3123"
+    "mock:server": "json-server db.json --host=127.0.0.1 --port 3123",
+    "all": "npm-run-all -p start mock:server"
   },
   "eslintConfig": {
     "extends": [
