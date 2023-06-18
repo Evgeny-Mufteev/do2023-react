@@ -6,7 +6,6 @@ import { useForm } from 'react-hook-form';
 import styles from './MainModal.module.scss';
 import classNames from 'classnames';
 import axios from 'axios';
-import { type ITicketsState } from '../../../store/tickets';
 
 interface IModalProps {
   modalActive: boolean;
