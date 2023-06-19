@@ -11,6 +11,7 @@ import { MainTickets } from '../../Components/Main/MainTickets';
 import { MainSlider } from '../../Components/Main/MainSlider';
 import MainTimer from '../../Components/Main/MainTimer';
 import { Modal } from '../../Components/Commons/Modal';
+import { isModalActiveSelector } from '../../store/modal/selectors';
 
 const MainPage = () => {
   const dispatch = useDispatch();
@@ -19,8 +20,11 @@ const MainPage = () => {
   const isLoading = useSelector(getTicketsIsLoading);
 
   const [modalActive, setModalActive] = useState(false);
+  const modalActive2 = useSelector(isModalActiveSelector);
 
-  const changeModalActive = (status: boolean) => { setModalActive(status) };
+  const changeModalActive = (status: boolean) => {
+    setModalActive(status)
+  };
 
   useEffect(() => {
     dispatch(getTickets());
@@ -56,7 +60,7 @@ const MainPage = () => {
       </section>
 
       {
-        modalActive && (
+        modalActive2 && (
           < Modal
             modalActive={modalActive}
             changeModalActive={changeModalActive}
