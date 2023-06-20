@@ -19,7 +19,11 @@ const slice = createSlice({
     showModal: (state) => {
       state.modal.isActive = true;
     },
+    hideModal: (state) => {
+      state.modal.isActive = false;
+    },
   },
 });
 
 export const { reducer: modalReducer, name: modalNameReducer, actions } = slice;
+export const { showModal, hideModal } = slice.actions;

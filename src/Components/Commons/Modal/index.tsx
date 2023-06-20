@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectedTicketId } from '../../../store/tickets/selectors';
+import { hideModal } from '../../../store/modal';
 
 import { useForm } from 'react-hook-form';
 import styles from './MainModal.module.scss';
 import classNames from 'classnames';
 import axios from 'axios';
+import { isModalActiveSelector } from '../../../store/modal/selectors';
 
 interface IModalProps {
   modalActive: boolean;
@@ -30,9 +32,12 @@ const removeBodyClass = (className: string) => {
 }
 
 export const Modal = ({ modalActive, changeModalActive, onClose }: IModalProps) => {
+  const dispatch = useDispatch();
   const ticketId = useSelector(selectedTicketId);
+  const modalActive2 = useSelector(isModalActiveSelector);
+
   useEffect(() => {
-    if (modalActive) {
+    if (!modalActive2) {
       addBodyClass('no-scroll');
     } else {
       removeBodyClass('no-scroll');
@@ -40,12 +45,12 @@ export const Modal = ({ modalActive, changeModalActive, onClose }: IModalProps) 
     return () => {
       removeBodyClass('no-scroll');
     };
-  }, [modalActive]);
+  }, [modalActive2]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        onClose();
+        dispatch(hideModal());
       }
     };
     document.addEventListener('keydown', handleKeyDown);
@@ -70,12 +75,12 @@ export const Modal = ({ modalActive, changeModalActive, onClose }: IModalProps) 
     <div
       role="button"
       className={classNames(styles['popup-ticket__wrap'], {
-        [styles.active]: modalActive,
+        [styles.active]: !modalActive2,
       })}
-      onClick={() => { changeModalActive(false); }}>
+      onClick={() => { dispatch(hideModal()); }}>
       <div
         className={classNames(styles['popup-ticket__content'], {
-          [styles.active]: modalActive,
+          [styles.active]: !modalActive2,
         })}
         onClick={e => { e.stopPropagation() }}
       >
@@ -173,7 +178,7 @@ export const Modal = ({ modalActive, changeModalActive, onClose }: IModalProps) 
                   {...register('ticketId')} />
               </form>
             </div>
-            <button className={styles['popup-ticket__close']} onClick={() => { changeModalActive(false); }}>
+            <button className={styles['popup-ticket__close']} onClick={() => { dispatch(hideModal()); }}>
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="28.6418" height="2.47077" transform="matrix(0.707109 -0.707105 0.707109 0.707105 0.000976562 20.2527)" fill="#EEEAEA" />
                 <rect width="28.6418" height="2.47077" transform="matrix(-0.707109 -0.707105 -0.707109 0.707105 22 20.2527)" fill="#EEEAEA" />
