@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
 import styles from './MainPage.module.scss';
 import commonStyles from '../../App.module.scss';
@@ -18,13 +18,7 @@ const MainPage = () => {
   const tickets = useSelector(getTicketsSelector);
   const isError = useSelector(getTicketsIsError);
   const isLoading = useSelector(getTicketsIsLoading);
-
-  const [modalActive, setModalActive] = useState(false);
   const modalActive2 = useSelector(isModalActiveSelector);
-
-  const changeModalActive = (status: boolean) => {
-    setModalActive(status)
-  };
 
   useEffect(() => {
     dispatch(getTickets());
@@ -47,7 +41,6 @@ const MainPage = () => {
             {tickets.map((obj) => {
               return <MainTickets
                 key={obj.id} {...obj}
-                changeModalActive={changeModalActive}
               />;
             })}
             {isLoading && <span>Loading...</span>}
@@ -62,9 +55,6 @@ const MainPage = () => {
       {
         modalActive2 && (
           < Modal
-            modalActive={modalActive}
-            changeModalActive={changeModalActive}
-            onClose={() => { changeModalActive(false); }}
           />
         )
       }

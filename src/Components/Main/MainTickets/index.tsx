@@ -1,14 +1,14 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import styles from './MainTickets.module.scss';
 import AppStyles from '../../../App.module.scss';
-import { type ITicketsModal } from '../../../types';
+import { type ITickets } from '../../../types';
 import { setSelectedTicketId } from '../../../store/tickets';
 import { showModal } from '../../../store/modal';
 
 export const MainTickets = (
-  { name, newPrice, oldPrice, options, changeModalActive, id }: ITicketsModal) => {
+  { name, newPrice, oldPrice, options, id }: ITickets) => {
   const dispatch = useDispatch();
 
   const handleTicketClick = (id: number) => {
@@ -36,10 +36,8 @@ export const MainTickets = (
           className={`${AppStyles.btn} ${styles.tickets__btn}`}
           onClick={() => {
             dispatch(showModal());
-            changeModalActive(true);
             handleTicketClick(id);
           }}>
-
           Купить
         </button>
       </div>

@@ -12,18 +12,17 @@ export interface ITickets {
   options: string[];
   id: number;
 }
-
-export interface ITicketsModal extends ITickets {
-  changeModalActive: (status: boolean) => void;
-}
-
-export interface ITicketsModalId extends ITicketsModal {
-  setSelectedTicketId: (ticketId: number | null) => void
-}
-
 export interface PageInfoItem {
   name: string;
   text: string;
   pageName: string;
   id: string;
+}
+
+export interface IFormData {
+  fullName: string;
+  email: string;
+  phone: string;
+  privacyPolicy: boolean;
+  ticketId: string
 }

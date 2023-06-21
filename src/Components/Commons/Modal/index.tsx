@@ -1,27 +1,13 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { selectedTicketId } from '../../../store/tickets/selectors';
-import { hideModal } from '../../../store/modal';
+import { hideModal, showModal } from '../../../store/modal';
 
 import { useForm } from 'react-hook-form';
 import styles from './MainModal.module.scss';
 import classNames from 'classnames';
 import axios from 'axios';
-import { isModalActiveSelector } from '../../../store/modal/selectors';
-
-interface IModalProps {
-  modalActive: boolean;
-  changeModalActive: (status: boolean) => void;
-  onClose: () => void;
-}
-
-interface IFormData {
-  fullName: string;
-  email: string;
-  phone: string;
-  privacyPolicy: boolean;
-  ticketId: string
-}
+import { type IFormData } from '../../../types';
 
 const addBodyClass = (className: string) => {
   document.body.classList.add(className);
@@ -31,13 +17,14 @@ const removeBodyClass = (className: string) => {
   document.body.classList.remove(className);
 }
 
-export const Modal = ({ modalActive, changeModalActive, onClose }: IModalProps) => {
+export const Modal = () => {
   const dispatch = useDispatch();
   const ticketId = useSelector(selectedTicketId);
-  const modalActive2 = useSelector(isModalActiveSelector);
+  const modalActive = useSelector(showModal);
+  const modalHidden = useSelector(hideModal);
 
   useEffect(() => {
-    if (!modalActive2) {
+    if (modalActive) {
       addBodyClass('no-scroll');
     } else {
       removeBodyClass('no-scroll');
@@ -45,7 +32,7 @@ export const Modal = ({ modalActive, changeModalActive, onClose }: IModalProps) 
     return () => {
       removeBodyClass('no-scroll');
     };
-  }, [modalActive2]);
+  }, [modalActive]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -75,12 +62,12 @@ export const Modal = ({ modalActive, changeModalActive, onClose }: IModalProps) 
     <div
       role="button"
       className={classNames(styles['popup-ticket__wrap'], {
-        [styles.active]: !modalActive2,
+        [styles.active]: modalActive,
       })}
       onClick={() => { dispatch(hideModal()); }}>
       <div
         className={classNames(styles['popup-ticket__content'], {
-          [styles.active]: !modalActive2,
+          [styles.active]: modalActive,
         })}
         onClick={e => { e.stopPropagation() }}
       >
