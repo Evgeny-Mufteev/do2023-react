@@ -6,18 +6,6 @@ export const Footer = () => {
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.footer__info}>
-          <div className={styles['footer__info-social']}>
-            <a href="https://vk.com/digitalottepel" target="_blank" rel="noreferrer">
-              <svg className={styles['icon, icon-vk']}>
-                <use href="./assets/svg/sprite.svg#icon-vk"></use>
-              </svg>
-            </a>
-            <a href="https://t.me/digitalottepel" target="_blank" rel="noreferrer">
-              <svg className={styles['icon, icon-tg']}>
-                <use href="./assets/svg/sprite.svg#icon-tg"></use>
-              </svg>
-            </a>
-          </div>
           <div className={styles['footer__info-adress']}>Нижний Новгород, ул. Академика Сахарова, 4, технопарк Анкудиновка</div>
           <div className={styles['footer__info-contacts']}>
             <a href="tel:+79960004329" className={styles['footer__info-link']}> +7 (996) 000-43-29</a>
