@@ -60,7 +60,7 @@ export const MainSlider = () => {
       >
         {images.map((image, index) => (
           <SwiperSlide key={index}>
-            <img className={styles.img__item} src={`/img/sliderMain/${image}`} alt={`${image}${index}`} />
+            <img className={styles.img__item} src={`./img/sliderMain/${image}`} alt={`${image}${index}`} />
           </SwiperSlide>
         ))}
       </Swiper>
