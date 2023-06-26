@@ -8,7 +8,7 @@ export interface IModalState {
 
 const initialState: IModalState = {
   modal: {
-    isActive: true,
+    isActive: false,
   },
 };
 

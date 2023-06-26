@@ -20,8 +20,6 @@ export const Header = () => {
   }, []);
 
   React.useEffect(() => {
-    console.log(pathname);
-
     const item = headerDesc.find((el) => el.pageName === pathname.slice(1)) ?? headerDesc[0];
 
     if (item) {

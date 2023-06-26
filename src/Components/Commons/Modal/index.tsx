@@ -24,7 +24,7 @@ export const Modal = () => {
   const modalHidden = useSelector(hideModal);
 
   useEffect(() => {
-    if (modalActive) {
+    if (modalHidden) {
       addBodyClass('no-scroll');
     } else {
       removeBodyClass('no-scroll');
@@ -32,7 +32,7 @@ export const Modal = () => {
     return () => {
       removeBodyClass('no-scroll');
     };
-  }, [modalActive]);
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
