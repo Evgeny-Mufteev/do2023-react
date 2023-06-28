@@ -7,6 +7,8 @@ interface ISpeakersShowMore {
 
 export const SpeakersShowMore = (speakersShowMore: ISpeakersShowMore) => {
   return (
-    <button onClick={speakersShowMore.handleClickLoadMore} className={`${styles.speakers__btn} ${styles['red-btn']}`}>Показать ещё</button>
+    <button
+      onClick={speakersShowMore.handleClickLoadMore}
+      className={`${styles.speakers__btn} ${styles['red-btn']}`}>Показать ещё</button>
   )
 }

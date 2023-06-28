@@ -13,7 +13,6 @@ export const Header = () => {
   const headerDesc = useSelector(getHeaderDescSelector);
 
   const { pathname } = useLocation();
-  console.log(pathname);
 
   const [{ name, text }, setData] = useState({ name: '', text: '' });
 

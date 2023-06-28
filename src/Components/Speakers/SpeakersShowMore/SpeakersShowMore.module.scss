@@ -21,3 +21,21 @@
     background: #D05034;
   }
 }
+
+
+@media screen and (max-width: 767px) {
+  .speakers__btn {
+    font-size: 16px;
+    line-height: 130%;
+    width: 165px;
+    height: 39px;
+    margin: 60px auto 0;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .speakers__btn {
+    margin: 40px auto 0;
+  }
+}

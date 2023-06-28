@@ -51,3 +51,39 @@
     }
   }
 }
+
+@media screen and (max-width: 767px) {
+  .timer {
+    &-title {
+      font-size: 13px;
+      line-height: 18px;
+      text-align: left;
+      margin-bottom: 10px;
+    }
+
+    & .countdown div span,
+    & .timer__colon {
+      font-size: 28px;
+      line-height: 32px;
+    }
+
+    & .countdown__block {
+      width: 151px;
+    }
+
+    .countdown,
+    .countdown-text {
+      justify-content: flex-start;
+    }
+
+    &__days {
+      margin-right: 29px;
+      width: 29px;
+    }
+
+    & .countdown-text div span {
+      font-size: 12px;
+      line-height: 14px;
+    }
+  }
+}

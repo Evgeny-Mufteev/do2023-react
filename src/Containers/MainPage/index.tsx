@@ -12,6 +12,7 @@ import { MainSlider } from '../../Components/Main/MainSlider';
 import MainTimer from '../../Components/Main/MainTimer';
 import { Modal } from '../../Components/Commons/Modal';
 import { isModalActiveSelector } from '../../store/modal/selectors';
+import { MainSpeakers } from '../../Components/Main/MainSpeakers';
 
 const MainPage = () => {
   const dispatch = useDispatch();
@@ -48,6 +49,9 @@ const MainPage = () => {
           </div>
         </div>
       </section>
+
+      <MainSpeakers />
+
       <section className={styles.photogallery}>
         < MainSlider />
       </section>

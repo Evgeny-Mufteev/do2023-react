@@ -70,3 +70,80 @@
   }
 
 }
+
+@media screen and (max-width: 1349px) {
+  .header {
+    &__holder {
+      padding: 100px 0 225px;
+    }
+  }
+
+  .container {
+    max-width: 985px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .header {
+    &__title {
+      font-size: 50px;
+      line-height: 70px;
+      margin-bottom: 12px;
+    }
+  }
+
+  .container {
+    max-width: 728px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .header {
+    .header-nav {
+      padding: 24px 0;
+      flex-direction: column;
+
+      &__logo {
+        margin-bottom: 20px;
+      }
+
+      &__link {
+        font-size: 14px;
+        line-height: 125%;
+      }
+
+      &__item:not(:last-child) {
+        margin-right: 18px;
+      }
+    }
+
+    &__title {
+      font-size: 28px;
+      line-height: 36px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    &__subtitle {
+      font-size: 14px;
+      line-height: 125%;
+    }
+
+    &__holder {
+      padding: 80px 0 168px;
+    }
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 0 12px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .header {
+    &__holder {
+      padding: 80px 0 168px;
+    }
+  }
+}
