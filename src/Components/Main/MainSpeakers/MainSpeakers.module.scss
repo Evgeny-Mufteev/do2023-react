@@ -23,141 +23,93 @@
     }
   }
 
-  &__block {
-    margin-top: 80px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-gap: 15px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "q1 q2 q4 q7 q7 q8 q9"
-      "q3 q3 q5 q7 q7 q12 q12"
-      "q3 q3 q6 q10 q11 q12 q12";
+  .btn {
+    padding: 16px 30px;
+    border-radius: 600px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    text-transform: uppercase;
+    transition: all .4s ease;
+    border: none;
+  }
 
-    &-item {
-      position: relative;
+  .black-btn {
+    color: #ffffff;
+    background: #10110D;
+    border: 1px solid #ffffff;
 
-      img:hover {
-        opacity: 0.2;
+    &:hover {
+      color: #10110D;
+      background: #ffffff;
+    }
+  }
+}
+
+
+@media screen and (max-width: 1023px) {
+  .speakers {
+    padding-bottom: 180px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .speakers {
+    padding-bottom: 120px;
+
+    &__header {
+      &-title {
+        font-size: 28px;
+        line-height: 32px;
+        margin-bottom: 32px;
       }
 
-      &::before {
-        display: none;
+      &-btns {
+        display: flex;
+        flex-direction: column;
+
+        .black-btn {
+          width: 280px;
+          height: 39px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 12px;
+          padding: 0;
+        }
+
+        .red-btn {
+          width: 280px;
+          height: 39px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+  }
+
+  .btn-speakers {
+    width: 280px;
+    height: 39px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .speakers {
+    &__header {
+      &-title {
         text-align: center;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        max-width: 138px;
       }
 
-      &:hover::before {
-        display: block;
+      &-btns {
+        margin: 0 auto;
       }
     }
   }
-
-  .q1 {
-    grid-area: q1;
-
-    &::before {
-      content: "Серкан Балят";
-    }
-  }
-
-  .q2 {
-    grid-area: q2;
-
-    &::before {
-      content: "Евгения Калабухова-Солодкая";
-    }
-  }
-
-  .q3 {
-    grid-area: q3;
-
-    &::before {
-      content: "Черная русалочка";
-    }
-  }
-
-  .q4 {
-    grid-area: q4;
-
-    &::before {
-      content: "Егор Шип";
-    }
-  }
-
-  .q5 {
-    grid-area: q5;
-
-    &::before {
-      content: "Местная чикса";
-    }
-  }
-
-  .q6 {
-    grid-area: q6;
-
-    &::before {
-      content: "Какой-то дед";
-    }
-  }
-
-  .q7 {
-    grid-area: q7;
-
-    &::before {
-      content: "Недопонятый гений";
-    }
-  }
-
-  .q8 {
-    grid-area: q8;
-
-    &::before {
-      content: "Алсу";
-    }
-  }
-
-  .q9 {
-    grid-area: q9;
-
-    &::before {
-      content: "Самый сексуальный мужик в мире";
-    }
-  }
-
-  .q10 {
-    grid-area: q10;
-
-    &::before {
-      content: "Пубертатная язва";
-    }
-  }
-
-  .q11 {
-    grid-area: q11;
-
-    &::before {
-      content: "Так себе шутник";
-    }
-  }
-
-  .q12 {
-    grid-area: q12;
-
-    &::before {
-      content: "Говнюки";
-    }
-  }
-
-  .container {
-    max-width: 1320px;
-    width: 100%;
-    margin: 0 auto;
-  }
-
 }

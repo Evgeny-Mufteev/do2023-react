@@ -6,8 +6,8 @@ import { hideModal, showModal } from '../../../store/modal';
 import { useForm } from 'react-hook-form';
 import styles from './MainModal.module.scss';
 import classNames from 'classnames';
-import axios from 'axios';
 import { type IFormData } from '../../../types';
+import { apiClient } from '../../../utils/network/apiClient';
 
 const addBodyClass = (className: string) => {
   document.body.classList.add(className);
@@ -50,7 +50,8 @@ export const Modal = () => {
 
   const onSubmit = async (data: IFormData) => {
     try {
-      const response = await axios.post('http://127.0.0.1:3123/selectTickets', data);
+      const response = await apiClient.post('/selectTickets', data);
+      dispatch(hideModal());
       console.log(response.data);
     } catch (error) {
       console.error(error);
