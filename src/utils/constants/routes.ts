@@ -3,4 +3,5 @@ export const routes = {
   PREMIUM: '/premium',
   PROGRAM: '/program',
   SPEAKERS: '/speakers',
+  NOT_FOUND: '*',
 };

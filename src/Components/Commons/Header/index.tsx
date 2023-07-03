@@ -21,7 +21,7 @@ export const Header = () => {
   }, []);
 
   React.useEffect(() => {
-    const item = headerDesc.find((el) => el.pageName === pathname.slice(1)) ?? headerDesc[0];
+    const item = headerDesc.find((el) => el.pageName === pathname.slice(1)) ?? headerDesc[4];
 
     if (item) {
       setData({ name: item.name, text: item.text });
